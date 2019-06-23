@@ -1,0 +1,14 @@
+{
+  "hosting": [
+    {
+      "target": "development",
+      "public": "public",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "production",
+      "public": "public",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    }
+  ]
+}

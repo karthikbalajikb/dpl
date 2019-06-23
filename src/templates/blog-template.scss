@@ -1,0 +1,48 @@
+.blog__post {
+  font-family: 'Roboto', sans-serif;
+
+  &__container {
+    padding: 0 15%;
+    max-width: 100vw;
+  }
+
+  &__title {
+    color: #325556;
+    text-align: center;
+    padding-top: 40px;
+    font-size: 3em;
+  }
+
+  &__date {
+    color: lightgrey;
+    font-size: small;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &__tags{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    &__text{
+      margin: 10px;
+      padding: 4px 15px;
+      background-color: #8acb82;
+      color: white;
+      font-weight: bold;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.blog__post__content {
+  p {
+    font-size: medium;
+    line-height: 1.6em;
+  }
+}
