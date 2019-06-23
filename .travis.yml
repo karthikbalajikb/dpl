@@ -1,7 +1,6 @@
 language: node_js
 node_js:
   - 8.11.3
-
 cache:
   directories:
     - node_modules
@@ -9,7 +8,6 @@ before_script:
   - yarn install
 script:
   - yarn build
-
 deploy:
   provider: firebase
   edge:
@@ -17,7 +15,7 @@ deploy:
     branch: master
   on:
     all_branches: true
-  only: "hosting:development"
+  only: 'hosting:development'
   token:
-    secure: "4kTsOjvTUaEkF8IRFvvV9a09fm4buZKsyF7xsnwtC9OEEUdDpOsN7qI0lKIkAS+M7c68SFKOLrAyo/ODEwAbJBvgNuoWf4IoC9HNouHHjFhzwDyKBaTGuplCSiivMcBzanD1BGWD/Zflu1VTJjWI2+puUd6OTNzG58KMRQa6cjprRGfujuWdspsYbYt1Ek/wCjCfhQBazcnyRmOBWRWDvrZocPZu3H5KyC7Cm14wr4NZF5ImfSuxVfrSRAg1JYYoLM7rBdUE1tYDIKd1y2y91/wHy3lKx/thkhzZ8QI4wMRI5GarcZIOUrcp2zsPn4YyE4u7AjTkcBWerJSgqgpVVCS62UClYulQFU6YIrHy7YiUZ+nd2PLhkzKnNo1GmZw5XZe1P/o8HqHmrRVsrWrvuEQFun7sjPrdPW/IfhLaD8WBVmPlBnGBVh9tX5/IoogLPjUNtRaYeQMcmSK1OlNQyOT8xFa4MyIBXQnX3ne2xB9Icne46+j3EdrTIHWxQEnXeALrrTSvC2Sf/dAyafzANGFsVJuEqga/GxNNG6EINIt1cJRdkch565TboYX5k4s20x4ra373Evuorao2vyh4MIOanEpNEZ2gVjfSM8xbzP4aGR9n5LDTdlO0x6waPlJA9oHcd4m7/QLBsVlWsR2kPnmMaKksHgLcnQUijEWSak0="
-  message: "Yooo KB !!! ... KB TechSpace is deployed now"
+    secure: 'ZDY5GtViRDt5jiw0lqLeVGaR+OEqWczJdsujTfL9qIUmiLLsZowz34XCAn7yuRY82/oxIOTEs252ikjh5l9KWxW1eZ7aH+8TWqh7UHLCSUqWcLgrzZDUp7kwez1gZYdJL7qqvMFLFEmbL/C+Q4M0FxRTRAom/RgqwUHWY9q0lGZjrJUwADvwi4A+hQsdKDKO28ytH3A0i1vjMK7GtO+7N2TQZ+24jYOYuemiaKlzEW1HsaqxwDu9mqcSidwZfnxl8NXN4NIJjeQ+5x94irq/sABgiatNvMr491itMEdQKb0wWlRQUqHbPshWw+N5A8EtMBg/4eIk0qxJ/4qpxF7rLYp9jrjlKrNJh3qjtqXpDkxuPuqVLxvAZRFJnEsskqRkdZzoKpRxqL1G3Irb85RsyeEmV5mGq0/9N9WrcCjkaRkQ4lsk92S7I/9D6MwfU7b6nCqKZF58Q6ucmGt4xhAVd5k1vaV8ISJOHAhzAElJ/5SGFalBKiP8XnBMTeJLFpEG6zidJIsZDX3f/rgTrmhDp4shu5Oz8svWyKIf2Pvfs3b7IXZINEc/aYkd6WjBqy4Upl97oOdi5Wknc/D4CHxd9nJhXxobTMj/nZC5SRx7OTdW8L9gLfIBMCqw5ioq/oDjwhVASiVzDyjhEGs5H4NzedGpvHrOMBbpEE/eufJVBjc='
+  message: 'Yooo KB !!! ... KB TechSpace is deployed now'
