@@ -1,57 +1,14 @@
-language: ruby
-rvm:
-- "2.2.9"
-- "2.3.6"
-- "2.4"
-- "2.5.3"
-
-jobs:
-  include:
-    - stage: deploy
-      if: branch = master AND NOT type IN (pull_request)
-      cache: false
-      before_deploy:
-        - sed -i.bak "s/VERSION = '.*'/VERSION = '${DPL_VERSION}'/g" lib/dpl/version.rb
-        - git config user.name "travisbot"
-        - git config user.email "deploy@travis-ci.org"
-        - git add lib/dpl/version.rb
-        - git commit -m "Update DPL::Version"
-      deploy:
-        - provider: rubygems
-          edge:
-            branch: master
-          api_key:
-            secure: ZmZoDL1tilWvQrqRWDm2K4xQ5Grt9eRJzYVZPLANR0P1TM5BJBLk+UhWCWCPkkDVIBWMa5ANsiFYBxtH65Lw+uqMztSpVusk0l0LQXZGv9jMpT9445A8008U3vvfS0ke7IG8Q4bMAC7Sd6VGaiHDyZC7zmNvnqMpmVX7ShcgBME=
-          gem: dpl
-          gemspec_glob: 'dpl*.gemspec'
-          on:
-            repo: travis-ci/dpl
-  allow_failures:
-
-env:
-  global:
-    - DPL_VERSION=$(ruby -I lib -r dpl/version.rb -e "puts DPL::VERSION.succ + \".travis.#{ENV['TRAVIS_JOB_NUMBER']}\"")
-
-sudo: false
-
-before_cache:
-  - rm -rf $GEM_HOME/cache/dpl-*.travis.*.gem $GEM_HOME/gems/dpl-*.travis.* $GEM_HOME/specifications/dpl-*.travis.*
-  - git checkout bin/dpl
+language: node_js
+node_js:
+  - 8.11.3
 
 cache:
   directories:
-    - vendor/cache
-    - $GEM_HOME
     - node_modules
-
-before_install:
-  - gem update bundler
-
 before_script:
-  - rm -f $(ruby -r rubygems -e "puts Gem.bindir")/dpl
-
+  - yarn install
 script:
-  - rake
+  - yarn build
 
 deploy:
   provider: firebase
@@ -60,7 +17,7 @@ deploy:
     branch: master
   on:
     all_branches: true
-  only: 'hosting:development'
+  only: "hosting:development"
   token:
-    secure: '4kTsOjvTUaEkF8IRFvvV9a09fm4buZKsyF7xsnwtC9OEEUdDpOsN7qI0lKIkAS+M7c68SFKOLrAyo/ODEwAbJBvgNuoWf4IoC9HNouHHjFhzwDyKBaTGuplCSiivMcBzanD1BGWD/Zflu1VTJjWI2+puUd6OTNzG58KMRQa6cjprRGfujuWdspsYbYt1Ek/wCjCfhQBazcnyRmOBWRWDvrZocPZu3H5KyC7Cm14wr4NZF5ImfSuxVfrSRAg1JYYoLM7rBdUE1tYDIKd1y2y91/wHy3lKx/thkhzZ8QI4wMRI5GarcZIOUrcp2zsPn4YyE4u7AjTkcBWerJSgqgpVVCS62UClYulQFU6YIrHy7YiUZ+nd2PLhkzKnNo1GmZw5XZe1P/o8HqHmrRVsrWrvuEQFun7sjPrdPW/IfhLaD8WBVmPlBnGBVh9tX5/IoogLPjUNtRaYeQMcmSK1OlNQyOT8xFa4MyIBXQnX3ne2xB9Icne46+j3EdrTIHWxQEnXeALrrTSvC2Sf/dAyafzANGFsVJuEqga/GxNNG6EINIt1cJRdkch565TboYX5k4s20x4ra373Evuorao2vyh4MIOanEpNEZ2gVjfSM8xbzP4aGR9n5LDTdlO0x6waPlJA9oHcd4m7/QLBsVlWsR2kPnmMaKksHgLcnQUijEWSak0='
-  message: 'Yooo KB !!! ... KB TechSpace is deployed now'
+    secure: "4kTsOjvTUaEkF8IRFvvV9a09fm4buZKsyF7xsnwtC9OEEUdDpOsN7qI0lKIkAS+M7c68SFKOLrAyo/ODEwAbJBvgNuoWf4IoC9HNouHHjFhzwDyKBaTGuplCSiivMcBzanD1BGWD/Zflu1VTJjWI2+puUd6OTNzG58KMRQa6cjprRGfujuWdspsYbYt1Ek/wCjCfhQBazcnyRmOBWRWDvrZocPZu3H5KyC7Cm14wr4NZF5ImfSuxVfrSRAg1JYYoLM7rBdUE1tYDIKd1y2y91/wHy3lKx/thkhzZ8QI4wMRI5GarcZIOUrcp2zsPn4YyE4u7AjTkcBWerJSgqgpVVCS62UClYulQFU6YIrHy7YiUZ+nd2PLhkzKnNo1GmZw5XZe1P/o8HqHmrRVsrWrvuEQFun7sjPrdPW/IfhLaD8WBVmPlBnGBVh9tX5/IoogLPjUNtRaYeQMcmSK1OlNQyOT8xFa4MyIBXQnX3ne2xB9Icne46+j3EdrTIHWxQEnXeALrrTSvC2Sf/dAyafzANGFsVJuEqga/GxNNG6EINIt1cJRdkch565TboYX5k4s20x4ra373Evuorao2vyh4MIOanEpNEZ2gVjfSM8xbzP4aGR9n5LDTdlO0x6waPlJA9oHcd4m7/QLBsVlWsR2kPnmMaKksHgLcnQUijEWSak0="
+  message: "Yooo KB !!! ... KB TechSpace is deployed now"
